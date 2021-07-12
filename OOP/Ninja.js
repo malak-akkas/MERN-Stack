@@ -1,5 +1,5 @@
 class Ninja {
-    constructor(name, health, speed, strength) {
+    constructor(name, health) {
 
         this.name = name;
         this.health = health;
@@ -18,23 +18,28 @@ class Ninja {
     }
 }
 
-const ninja = new Ninja("Hyabusa", 100);
-ninja.sayName();
-ninja.showStats();
-ninja.drinkSake();
-ninja.showStats();
+// const ninja = new Ninja("Hyabusa", 100);
+// ninja.sayName();
+// ninja.showStats();
+// ninja.drinkSake();
+// ninja.showStats();
 
 class Sensie extends Ninja {
-    constructor(name, health, wisdom) {
-        super(name, health);
+    constructor(name) {
+        super(name);
         this.health = 200;
         this.wisdom = 10;
+        this.speed = 10;
+        this.strength = 10;
+
+
     }
 
     speakWisdom() {
-        console.log(`wisdom speak ${this.wisdom}`);
+        this.drinkSake();
+        console.log(`What one programmer can do in one month, two programmers can do in two months.`);
     }
 }
-const superSensei = new Sensie("Hyabusa", 200, 10);
+const superSensei = new Sensie("Hyabusa");
 superSensei.speakWisdom();
-superSensei.drinkSake();
+superSensei.showStats();
