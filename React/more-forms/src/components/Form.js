@@ -6,27 +6,36 @@ const Form=(props)=>{
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
     const [confPassword,setConfPassword] = useState("");
+    const [firstNameleError,setFirstNameError] = useState("");
+    const [lasttNameleError,setLastNameError] = useState("");
+    const [passwordError,setPasswordError] = useState("");
+    const [emaileError,setEmailError] = useState("");
+    const [confPasswordError,setConfirmPasswordError] = useState("");
+
+
 
     const handleFirstName = (e) => {
         setFirstName(e.target.value);
-        if(e.target.value.length < 1) {
-            setFirstNameError("First name is required!");
-        } else if(e.target.value.length < 2) {
-            setFirstNameError("First name must be 2 characters or longer!");
-        }
+        if(e.target.value.length < 2) {
+            setFirstNameError("First name must be 2 characters or longer!!");
+        }else{
+            setFirstNameError("");
+        } 
     }
     const handleLastName = (e) => {
         setLastName(e.target.value);
-        if(e.target.value.length < 1) {
-            setLastNameError("Last name is required!");
-        } else if(e.target.value.length < 2) {
+        if(e.target.value.length < 2) {
             setLastNameError("Last name must be 2 characters or longer!");
-        }
+        } else{
+            setLastNameError("");
+        } 
     }
     const handleEmail=(e)=>{
         setEmail(e.target.value);
         if(e.target.value.length<5){
             setEmailError("Email must be at least 5 characters!");
+        } else{
+            setEmailError("");
         }
     }
 
@@ -34,6 +43,8 @@ const Form=(props)=>{
         setPassword(e.target.value);
         if(e.target.value.length<8){
             setPasswordError("Password must be at least 8 characters!")
+        } else{
+            setPasswordError("");
         }
     }
 
@@ -41,8 +52,10 @@ const Form=(props)=>{
         setConfPassword(e.target.value);
         if(e.target.value.length<8){
             setConfirmPasswordError("Passwords must match!");
-        }
-    }
+        } else{
+            setConfPassword("");
+        
+    }}
     return(
         <>
     
@@ -62,7 +75,7 @@ const Form=(props)=>{
                 <input type="text" onChange={handleLastName}  />
                 {
                     lasttNameleError ?
-                    <p style={{color:'red'}}>{ lastNameleError }</p> :
+                    <p style={{color:'red'}}>{ lasttNameleError }</p> :
                     ''
                 }
             </div>
