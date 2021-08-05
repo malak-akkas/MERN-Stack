@@ -8,6 +8,7 @@ const ProductForm = (props) => {
     const [price, setPrice] = useState(initialPrice);
     const [description, setDescription] = useState(initialDescription);
 
+
     
     
 const onSubmitHandler = (e) => {
@@ -18,6 +19,7 @@ const onSubmitHandler = (e) => {
     
 return (
         <form onSubmit={onSubmitHandler}>
+            
             <p>
                 <label>Title: </label><br/>
                 <input type="text" onChange={(e)=>setTitle(e.target.value)} value={title}/>

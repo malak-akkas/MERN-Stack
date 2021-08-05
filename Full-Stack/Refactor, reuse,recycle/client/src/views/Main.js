@@ -17,6 +17,9 @@ const Main = () => {
         axios.post('http://localhost:8000/api/products/new', product)
             .then(res=>{
                 setProducts([...products, res.data]);
+            
+                
+
             })
     }
 
