@@ -28,9 +28,9 @@ module.exports.getProduct = (request, response) => {
 
 
 module.exports.updateProduct = (request, response) => {
-  Product.findOneAndUpdate({_id: request.params.id}, request.body, {new:true})
+  Product.findOneAndUpdate({_id: request.params.id}, request.body, {new:true, runValidators:true})
       .then(updateProduct => response.json(updateProduct))
-      .catch(err => response.json(err))
+      .catch(err => response.status(400).json(err))
 }
 module.exports.deleteProduct = (request, response) => {
   Product.deleteOne({ _id: request.params.id })

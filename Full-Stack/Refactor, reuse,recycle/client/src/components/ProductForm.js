@@ -3,10 +3,11 @@ import axios from 'axios';
 import { navigate } from '@reach/router';
 
 const ProductForm = (props) => {
-    const { initialTitle, initialPrice, initialDescription, onSubmitProp } = props;
+    const { initialTitle, initialPrice, initialDescription, errors, onSubmitProp } = props;
     const [title, setTitle] = useState(initialTitle);
     const [price, setPrice] = useState(initialPrice);
     const [description, setDescription] = useState(initialDescription);
+    
 
 
     
@@ -14,11 +15,13 @@ const ProductForm = (props) => {
 const onSubmitHandler = (e) => {
         e.preventDefault();
         onSubmitProp({title, price, description});
+        console.log(errors);
     }
 
     
 return (
         <form onSubmit={onSubmitHandler}>
+            {errors.map((err, index) => <p key={index}> {err} </p>)}
             
             <p>
                 <label>Title: </label><br/>

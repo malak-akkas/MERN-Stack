@@ -9,6 +9,7 @@ const Update = (props) => {
     const { id } = props;
     const [products, setProducts] = useState();
     const [loaded, setLoaded] = useState(false);
+    const [errors, setErrors] = useState([]);
 
 
     useEffect(() => {
@@ -22,6 +23,16 @@ const Update = (props) => {
     const updateProduct = products => {
         axios.put('http://localhost:8000/api/products/'+ id, products)
             .then(res => console.log(res))
+            .catch(err=>{
+                const errorResponse = err.response.data.errors; 
+                const errorArr = []; 
+                for (const key of Object.keys(errorResponse)) { 
+                    errorArr.push(errorResponse[key].message)
+                }
+                // Set Errors
+                setErrors(errorArr);
+            })            
+    
             .then (navigate("/products"))
 
     }
@@ -30,10 +41,13 @@ const Update = (props) => {
             <h1>Update a Product</h1>
             {loaded && (
     <ProductForm
+    errors = {errors }
         onSubmitProp={updateProduct}
         initialTitle={products.title}
         initialPrice={products.price}
         initialDescription = {products.description}
+
+        
     />
 
 )}
